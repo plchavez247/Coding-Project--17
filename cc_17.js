@@ -26,7 +26,7 @@ class SalesRep {
         this.clients = [];
     }
     addClient(customer){
-        this.clients.push(customer)//adding a customer to the list
+        this.clients.push(customer);//adding a customer to the list
     } 
     getClientTotal(name){
         const client = this.clients.find(client => client.name ===name);
@@ -40,9 +40,9 @@ jimmy.addPurchase(430);
 const salesRepA = new SalesRep ("Sal");
 salesRepA.addClient(sam);
 salesRepA.addClient(jimmy);
-console.log(`${salesRepA.name}'s clients: ${rep.clients.map(client => client.name).join(",")}`)// shows the sales reps clients
+console.log(`${salesRepA.name}'s clients: ${salesRepA.clients.map(client => client.name).join(", ")}`)// shows the sales reps clients
 console.log(`Total spent by Jimmy: $${salesRepA.getClientTotal("Jimmy")}`);
-console.log(`Total spent by Sam: $${salesRepA.getClientTotal("Sam")}`);//shows how much each client spent
+console.log(`Total spent by Sam: $${salesRepA.getClientTotal("Sam Goodman")}`);//shows how much each client spent
 
 //Task 3: Create  VIPCustomer Class(extends Customer)
 class VIPCustomer extends Customer{
@@ -72,9 +72,9 @@ console.log(`Customer: ${goldCustomer.name}, Total Spent With Bonus: $${goldCust
 console.log(`Customer: ${platinumCustomer.name}, Total Spent With Bonus: $${platinumCustomer.getTotalSpent()}`);//logging customers total spent with bonus
 
 //Task 4: Build a Client Report System
-buildClientReport([sam, jimmy, goldCustomer, platinumCustomer])
+
 function buildClientReport (customers){
-    const totalRevenue = customers.reduce((sum, customer) => sum + customer.getClientTotal(), 0);// using .reduce() to calculate total revenue from customers
+    const totalRevenue = customers.reduce((sum, customer) => sum + customer.getTotalSpent(), 0);// using .reduce() to calculate total revenue from customers
     const highSpending = customers.filter(customer => customer.getTotalSpent() > 500);//using .filter() to find customer that spent over $500
     const customerSummary = customers.map(customer => ({
         name: customer.name, totalSpent: customer.getTotalSpent(), vipLevel: customer instanceof VIPCustomer ? customer.vipLevel: "Standard"// creating customer summary with .map()
@@ -83,4 +83,5 @@ function buildClientReport (customers){
     console.log(`Total Revenue: $${totalRevenue}`);
     console.log("High-spending customers:", highSpending.map(customer => customer.name))
     console.log("Customer summary:", customerSummary);// logging Total revenue, High-spending customers, Customer summary
-}
+};
+buildClientReport([sam, jimmy, goldCustomer, platinumCustomer]);
