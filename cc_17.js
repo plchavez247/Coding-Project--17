@@ -70,3 +70,17 @@ platinumCustomer.addPurchase(600);
 platinumCustomer.addPurchase(640);
 console.log(`Customer: ${goldCustomer.name}, Total Spent With Bonus: $${goldCustomer.getTotalSpent()}`);
 console.log(`Customer: ${platinumCustomer.name}, Total Spent With Bonus: $${platinumCustomer.getTotalSpent()}`);//logging customers total spent with bonus
+
+//Task 4: Build a Client Report System
+buildClientReport([sam, jimmy, goldCustomer, platinumCustomer])
+function buildClientReport (customers){
+    const totalRevenue = customers.reduce((sum, customer) => sum + customer.getClientTotal(), 0);// using .reduce() to calculate total revenue from customers
+    const highSpending = customers.filter(customer => customer.getTotalSpent() > 500);//using .filter() to find customer that spent over $500
+    const customerSummary = customers.map(customer => ({
+        name: customer.name, totalSpent: customer.getTotalSpent(), vipLevel: customer instanceof VIPCustomer ? customer.vipLevel: "Standard"// creating customer summary with .map()
+    }))
+
+    console.log(`Total Revenue: $${totalRevenue}`);
+    console.log("High-spending customers:", highSpending.map(customer => customer.name))
+    console.log("Customer summary:", customerSummary);// logging Total revenue, High-spending customers, Customer summary
+}
