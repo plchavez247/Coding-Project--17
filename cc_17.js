@@ -43,3 +43,30 @@ salesRepA.addClient(jimmy);
 console.log(`${salesRepA.name}'s clients: ${rep.clients.map(client => client.name).join(",")}`)// shows the sales reps clients
 console.log(`Total spent by Jimmy: $${salesRepA.getClientTotal("Jimmy")}`);
 console.log(`Total spent by Sam: $${salesRepA.getClientTotal("Sam")}`);//shows how much each client spent
+
+//Task 3: Create  VIPCustomer Class(extends Customer)
+class VIPCustomer extends Customer{
+    constructor(name, email, vipLevel){
+        super(name, email);
+        this.vipLevel = vipLevel// additional property
+    }
+    getTotalSpent(){
+        const total = super.getTotalSpent();
+        let bonus = 1;
+        if (this.vipLevel === "Gold"){// making gold level
+            bonus = 1.1;
+        } else if (this.vipLevel === "Platinum"){// making platinum level
+            bonus = 1.2;
+        }
+        return total * bonus;// returning total spent times the bonus based on VIPLevel
+    }
+};
+
+const goldCustomer = new VIPCustomer ("Johnny Z.", "JohnJohn@gmail.com", "Gold");
+const platinumCustomer = new VIPCustomer("Steven P.", "StevieWonder@gmail.com", "Platinum");
+goldCustomer.addPurchase(160);
+goldCustomer.addPurchase(400);
+platinumCustomer.addPurchase(600);
+platinumCustomer.addPurchase(640);
+console.log(`Customer: ${goldCustomer.name}, Total Spent With Bonus: $${goldCustomer.getTotalSpent()}`);
+console.log(`Customer: ${platinumCustomer.name}, Total Spent With Bonus: $${platinumCustomer.getTotalSpent()}`);//logging customers total spent with bonus
