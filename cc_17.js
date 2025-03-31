@@ -13,7 +13,7 @@ class Customer {
     }
 };
 
-const sam = new Customer("Sam Goodman", "Goodman@gmail.com");
+const sam = new Customer("Sam Goodman", "goodman@gmail.com");
 sam.addPurchase(200);
 sam.addPurchase(480);
 console.log(`New Customer: ${sam.name}, ${sam.email}`);
@@ -35,7 +35,7 @@ class SalesRep {
     }
 };
 
-const jimmy = new Customer("Jimmy", "JimbobSophine@gmail.com");
+const jimmy = new Customer("Jimmy", "jimbobsophine@gmail.com");
 jimmy.addPurchase(430);
 const salesRepA = new SalesRep ("Sal");
 salesRepA.addClient(sam);
@@ -62,8 +62,8 @@ class VIPCustomer extends Customer{
     }
 };
 
-const goldCustomer = new VIPCustomer ("Johnny Z.", "JohnJohn@gmail.com", "Gold");
-const platinumCustomer = new VIPCustomer("Steven P.", "StevieWonder@gmail.com", "Platinum");
+const goldCustomer = new VIPCustomer ("Johnny Z.", "johnjohn@gmail.com", "Gold");
+const platinumCustomer = new VIPCustomer("Steven P.", "steviewonder@gmail.com", "Platinum");
 goldCustomer.addPurchase(160);
 goldCustomer.addPurchase(400);
 platinumCustomer.addPurchase(600);
